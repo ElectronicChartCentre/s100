@@ -1,6 +1,6 @@
 #  S-100 part 15
 
-A java implementation of S-100 part 15 user permit, permit file and data encryption/decryption.
+A java implementation of S-100 part 15 user permit, permit file, signature validation and data encryption/decryption.
 
 ## Maven
 
