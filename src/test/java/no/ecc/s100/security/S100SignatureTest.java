@@ -17,7 +17,7 @@ public class S100SignatureTest extends TestCase {
         // root schema.
         dataServerCertificate.getCertificate().verify(schemaCertificate.getCertificate().getPublicKey());
 
-        // some data and it signature
+        // some data and its signature
         byte[] data = "Some data to sign".getBytes("UTF-8");
         byte[] modifiedData = "Some other data".getBytes("UTF-8");
         String signatureValue = "MCwCFAamPwY65gQJaKF+eDImoHYzzyjzAhRg1Kt+bfbs6lVByoB+dBPFV4+DkQ==";
