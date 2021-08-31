@@ -9,7 +9,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compile.source>11</maven.compile.source>
         <maven.compile.target>11</maven.compile.target>
-        <bouncycastle.version>1.64</bouncycastle.version>
+        <bouncycastle.version>1.67</bouncycastle.version>
     </properties>
     <dependencies>
 		<dependency>
