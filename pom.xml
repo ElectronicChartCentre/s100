@@ -7,15 +7,14 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <maven.compile.source>11</maven.compile.source>
-        <maven.compile.target>11</maven.compile.target>
-        <bouncycastle.version>1.67</bouncycastle.version>
+        <java.version>21</java.version>
+        <bouncycastle.version>1.70</bouncycastle.version>
     </properties>
     <dependencies>
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
-			<version>32.0.0-jre</version>
+			<version>33.4.8-jre</version>
 		</dependency>
         <dependency>
             <groupId>org.bouncycastle</groupId>
@@ -30,7 +29,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.13.1</version>
+            <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -39,9 +38,9 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.0</version>
+				<version>3.8.1</version>
     			<configuration>
-        			<release>11</release>
+        			<release>${java.version}</release>
     			</configuration>
 			</plugin>
         </plugins>
