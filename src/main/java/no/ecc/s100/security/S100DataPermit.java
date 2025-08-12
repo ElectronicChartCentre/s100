@@ -9,7 +9,6 @@ import java.util.Date;
 import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
-import javax.xml.stream.XMLStreamWriter;
 
 import no.ecc.s100.S100ProductSpecification;
 import no.ecc.s100.utility.FileUtils;
@@ -111,28 +110,6 @@ public class S100DataPermit implements Comparable<S100DataPermit> {
 
     public S100ProductSpecification getProductSpecification() {
         return productSpecification;
-    }
-
-    void appendTo(XMLStreamWriter writer, DateFormat permitDateFormat) throws XMLStreamException {
-        writer.writeStartElement(PERMIT_ELEMENT);
-
-        writer.writeStartElement(FILENAME_ELEMENT);
-        writer.writeCharacters(getFileName());
-        writer.writeEndElement();
-
-        writer.writeStartElement(EDITION_NUMBER_ELEMENT);
-        writer.writeCharacters(Integer.toString(getEdtn()));
-        writer.writeEndElement();
-
-        writer.writeStartElement(EXPIRY_ELEMENT);
-        writer.writeCharacters(permitDateFormat.format(getPermitEndDate()));
-        writer.writeEndElement();
-
-        writer.writeStartElement(ENCRYPTED_KEY_ELEMENT);
-        writer.writeCharacters(getEncryptedDataKey());
-        writer.writeEndElement();
-
-        writer.writeEndElement();
     }
 
     @Override

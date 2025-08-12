@@ -1,9 +1,7 @@
 package no.ecc.s100.security;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.security.GeneralSecurityException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -13,11 +11,9 @@ import java.util.Collections;
 import java.util.Date;
 
 import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
-import javax.xml.stream.XMLStreamWriter;
 
 import com.google.common.collect.Multimap;
 import com.google.common.collect.TreeMultimap;
@@ -142,78 +138,6 @@ public class S100PermitFile {
 
     public Collection<S100DataPermit> getDataPermits() {
         return Collections.unmodifiableCollection(permitsByProductSpecification.values());
-    }
-
-    public void writeOut(OutputStream out) throws IOException {
-        XMLOutputFactory outputFactory = XMLOutputFactory.newInstance();
-        try {
-            XMLStreamWriter writer = outputFactory.createXMLStreamWriter(out, "UTF-8");
-            writer.writeStartDocument("utf-8", "1.0");
-
-            // should probably not have two different element types in one
-            // document that both are named "permit"
-            writer.writeStartElement("permit");
-
-            writer.writeStartElement("header");
-
-            writer.writeStartElement(DATE_ELEMENT);
-            // this should be more like ISO-8601
-            DateFormat headerDateFormat = new SimpleDateFormat(HEADER_DATE_FORMAT);
-            writer.writeCharacters(headerDateFormat.format(date));
-            writer.writeEndElement();
-
-            if (dataserver != null) {
-                writer.writeStartElement(DATASERVER_ELEMENT);
-                writer.writeCharacters(dataserver);
-                writer.writeEndElement();
-            }
-
-            // probably not needed as version should be part of namespace or?
-            writer.writeStartElement("version");
-            writer.writeCharacters("1.0.0");
-            writer.writeEndElement();
-
-            writer.writeStartElement(USERPERMIT_ELEMENT);
-            writer.writeCharacters(userPermitString);
-            writer.writeEndElement();
-
-            writer.writeEndElement();
-
-            // this should be more like ISO-8601
-            DateFormat expiryDateFormat = new SimpleDateFormat(S100DataPermit.EXPIRY_DATE_FORMAT);
-            writer.writeStartElement("products");
-
-            for (S100ProductSpecification productSpecification : permitsByProductSpecification
-                    .keySet()) {
-                Collection<S100DataPermit> permits = permitsByProductSpecification
-                        .get(productSpecification);
-
-                // this level should probably not be here any more as product
-                // specification now can be read from the start of the file name
-                writer.writeStartElement(PRODUCT_ELEMENT);
-                writer.writeAttribute(ID_ATTRIBUTE, productSpecification.getName());
-
-                for (S100DataPermit permit : permits) {
-                    permit.appendTo(writer, expiryDateFormat);
-                }
-
-                writer.writeEndElement();
-
-            }
-            writer.writeEndElement();
-
-            writer.writeEndDocument();
-            writer.close();
-        } catch (XMLStreamException e) {
-            throw new IOException(e);
-        }
-
-    }
-
-    public byte[] toByteArray() throws IOException {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        writeOut(baos);
-        return baos.toByteArray();
     }
 
 }
