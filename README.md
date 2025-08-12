@@ -7,12 +7,12 @@ A java implementation of S-100 part 15 user permit, permit file, signature valid
 ```
 <repository>
     <id>ECC</id>
-    <url>https://github.com/ElectronicChartCentre/ecc-mvn-repo/raw/master/releases</url>
+    <url>https://maven.ecc.no/releases</url>
 </repository>
 
 <dependency>
     <groupId>no.ecc.s100</groupId>
     <artifactId>s100</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.3</version>
 </dependency>
 ```
