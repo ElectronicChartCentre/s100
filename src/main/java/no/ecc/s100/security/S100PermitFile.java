@@ -84,11 +84,10 @@ public class S100PermitFile {
                     } else if (PRODUCT_ELEMENT.equals(localName)) {
                         currentProductSpecification = new S100ProductSpecification(
                                 streamReader.getAttributeValue(null, ID_ATTRIBUTE));
-                    } else if (currentProductSpecification != null
-                            && S100DataPermit.PERMIT_ELEMENT.equals(localName)) {
+                    } else if (currentProductSpecification != null && (S100DataPermit.PERMIT_ELEMENT.equals(localName)
+                            || S100DataPermit.DATASET_PERMIT_ELEMENT.equals(localName))) {
                         permitsByProductSpecification.put(currentProductSpecification,
-                                new S100DataPermit(currentProductSpecification, expiryDateFormat,
-                                        streamReader));
+                                new S100DataPermit(currentProductSpecification, expiryDateFormat, streamReader));
                     }
                 }
             }

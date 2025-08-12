@@ -25,12 +25,13 @@ public class S100DataPermit implements Comparable<S100DataPermit> {
     private final S100ProductSpecification productSpecification;
 
     static final String PERMIT_ELEMENT = "permit";
+    static final String DATASET_PERMIT_ELEMENT = "datasetPermit";
     private static final String FILENAME_ELEMENT = "filename";
     private static final String EDITION_NUMBER_ELEMENT = "editionNumber";
     private static final String EXPIRY_ELEMENT = "expiry";
     private static final String ENCRYPTED_KEY_ELEMENT = "encryptedKey";
 
-    static final String EXPIRY_DATE_FORMAT = "yyyyMMdd";
+    static final String EXPIRY_DATE_FORMAT = "yyyy-MM-dd";
 
     private S100DataPermit(String fileName, int edtn, Date permitEndDate, String encryptedDataKey,
             S100ProductSpecification productSpecification) {
